@@ -18,31 +18,9 @@
 
 
 
-
-    <label for="wake-up-time">
-        <h1> Wake Up Time</h1>
-    </label><br>
-    <input type="datetime-local">
-
-    <br>
-    <br>
-    <!-- <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-      
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </div>
-     -->
-
-
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Time Measurement
         </button>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">4:00 AM</a></li>
@@ -55,6 +33,69 @@
         </ul>
     </div>
 
+
+
+    <br>
+    <br>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            What is your mood?
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item-mood" href="#">M+</a></li>
+            <li><a class="dropdown-item-mood" href="#">M</a></li>
+            <li><a class="dropdown-item-mood" href="#">M-</a></li>
+        </ul>
+    </div>
+    <br>
+    <br>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Are you on track regarding your daily goals
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item-goal" href="#">G+</a></li>
+            <li><a class="dropdown-item-goal" href="#">G</a></li>
+            <li><a class="dropdown-item-goal" href="#">G-</a></li>
+        </ul>
+    </div>
+    <br>
+    <br>
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Are you align with your displine or routine?
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item-mood" href="#">DR+</a></li>
+            <li><a class="dropdown-item-mood" href="#">DR</a></li>
+            <li><a class="dropdown-item-mood" href="#">DR-</a></li>
+        </ul>
+    </div>
+    <br>
+    <br>
+
+    <label for="mywhys">What are your thoughts?</label>
+    <input type="text" id="current-thoughts" name="curr-though" placeholder="Explain...">
+
+    <br>
+    <br>
+
+    <label for="wake-up-time">
+        <h1> Wake Up Time</h1>
+    </label><br>
+    <input type="datetime-local">
+
+    <br>
+    <br>
+
+
+    <label for="wake-up-time">
+        <h1> Put Head to rest Time</h1>
+    </label><br>
+    <input type="datetime-local">
+
     <br>
     <br>
 
@@ -65,11 +106,51 @@
     <br>
 
     <label for="myweight">State your weight.</label>
-    <input type="number" id = "weightlbs" name = "weightlbs">
+    <input type="number" id="weightlbs" name="weightlbs">
 
+    <br>
+    <br>
+
+
+    <label for="mywhys"> State your blessings.</label>
+    <input type="text" id="myblessings" name="mywhyall" placeholder="What are you blessed with? How can you get more blessings">
 
     <label for="mymoney">State the money you spent.</label>
-    <input type="number" id = "moneydols" min="1" step="any" />
+    <input type="number" id="moneydols" min="1" step="any" />
+
+
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Did you MJ?
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item-mj" href="#">yes</a></li>
+            <li><a class="dropdown-item-mj" href="#">NO</a></li>
+
+        </ul>
+    </div>
+    <br>
+    <br>
+
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Did you drink alcohol?
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item-alcohol" href="#">yes</a></li>
+            <li><a class="dropdown-item-alcohol" href="#">NO</a></li>
+
+        </ul>
+    </div>
+    <br>
+    <br>
+    
+    <label for="myfood"> What did you eat?</label>
+    <input type="text" id="myfood" name="myeat" placeholder="Be exact...">
+
+
 
 </body>
 
