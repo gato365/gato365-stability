@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dailyLogSchema = new mongoose.Schema({
+const stableSchema = new mongoose.Schema({
   date: { type: Date },
   wakeUp: { type: Date },
   weightAM: { type: Number },
@@ -21,4 +21,4 @@ const dailyLogSchema = new mongoose.Schema({
   time: { type: String, required: true }
 });
 
-module.exports = mongoose.model('DailyLog', dailyLogSchema);
+module.exports = mongoose.model('Stable', stableSchema);
