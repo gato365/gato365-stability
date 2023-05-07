@@ -24,30 +24,34 @@ const stableController = {
     },
 
     // @desc   Get all stable entries
-    // @route  GET /api/v1/stable
+    // @route   GET /api/v1/stable
     // @access Public
 
     getChartData: async (req, res) => {
         try {
-            // Find all stable entries in the database
-            const stableEntries = await Stable.find();
-
-            // Create an array of objects representing the data for the chart
-            const chartData = stableEntries.map(entry => ({
-                date: entry.date,
-                weightAM: entry.weightAM,
-                goals: entry.goals,
-                foodQuality: entry.foodQuality,
-                mood: entry.mood
-            }));
-
-            // Send the chart data as JSON
-            res.status(200).json({ success: true, data: chartData });
+          // Get the query parameters from the request
+          const queryParams = req.query;
+    
+          // Find all stable entries in the database that match the query parameters
+          const stableEntries = await Stable.find(queryParams);
+    
+          // Create an array of objects representing the data for the chart
+          const chartData = stableEntries.map(entry => ({
+            date: entry.date,
+            weightAM: entry.weightAM,
+            goals: entry.goals,
+            foodQuality: entry.foodQuality,
+            mood: entry.mood
+          }));
+    
+          // Send the chart data as JSON
+          res.status(200).json({ success: true, data: chartData });
         } catch (error) {
-            // If there was an error, send an error response
-            res.status(500).json({ success: false, error: error.message });
+          // If there was an error, send an error response
+          res.status(500).json({ success: false, error: error.message });
         }
-    }
+      }
+    
 };
 
 module.exports = stableController;
