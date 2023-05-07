@@ -1,23 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eman's Stability</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
     <div class="container mx-auto mt-8">
-        <h1 class="text-2xl font-bold mb-4">Eman's Stability</h1>
-        <form>
-            <!-- Your form inputs go here -->
+        <h1 class="text-2xl font-bold mb-4">Data Collection</h1>
+        <form id="data-form">
+            <!-- Conditional form inputs will be added here -->
         </form>
-        <div class="mt-8">
-            <!-- Display your data here -->
-        </div>
+        <div id="current-time"></div>
+        <button id="submit-form-button">Submit Form</button>
     </div>
     <script>
-        // Your JavaScript code to handle form submission and data retrieval
+        const dataForm = document.getElementById('data-form');
+        const currentTimeElement = document.getElementById('current-time');
+
+        function getCurrentTimePoint() {
+            const now = new Date();
+            const hour = now.getHours();
+            const minute = now.getMinutes();
+
+            if (hour < 7 || (hour === 7 && minute < 45)) return "wakeUp";
+            if (hour < 10 || (hour === 10 && minute < 45)) return "7_45am";
+            if (hour < 12) return "10_45am";
+            if (hour < 15) return "12pm";
+            if (hour < 18) return "3pm";
+            if (hour < 20 || (hour === 20 && minute < 30)) return "6pm";
+            return "8_30pm";
+        }
+
+        function renderFormFields(timePoint) {
+            let fields = '';
+
+            if (timePoint === "wakeUp") {
+                fields += `
+                    <div>
+                        <label for="weight">Weight:</label>
+                        <input type="number" id="weight" name="weight">
+                    </div>
+                `;
+            }
+
+            fields += `
+                <div>
+                    <label for="mood">Mood:</label>
+                    <select id="mood" name="mood">
+                        <option value="M-">M-</option>
+                        <option value="M">M</option>
+                        <option value="M+">M+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="goals">Goals:</label>
+                    <select id="goals" name="goals">
+                        <option value="G-">G-</option>
+                        <option value="G">G</option>
+                        <option value="G+">G+</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="food_quality">Food Quality:</label>
+                    <select id="food_quality" name="food_quality">
+                        <option value="L">L</option>
+                        <option value="M">M</option>
+                        <option value="H">H</option>
+                    </select>
+                </div>
+            `;
+
+            dataForm.innerHTML = fields;
+        }
+
+        function displayCurrentTime(timePoint) {
+            const currentTime = new Date().toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            });
+
+            currentTimeElement.textContent = `Current Time (${timePoint}): ${currentTime}`;
+        }
+
+        function setupForm() {
+            const currentTimePoint = getCurrentTimePoint();
+            renderFormFields(currentTimePoint);
+            displayCurrentTime(currentTimePoint);
+        }
+
+        setupForm();
+
+        const submitFormButton = document.getElementById('submit-form-button');
+
+        submitFormButton.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const weight = document.getElementById('weight').value;
+            const mood = document.getElementById('mood').value;
+            const goals = document.getElementById('goals').value;
+            const foodQuality = document.getElementById('food_quality').value;
+            const timePoint = getCurrentTimePoint();
+            const currentTime = new Date();
+
+            // Do something with the form data, such as saving it to a database or displaying it on the page
+        });
+
     </script>
 </body>
+
 </html>
