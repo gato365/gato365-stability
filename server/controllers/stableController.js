@@ -1,4 +1,4 @@
-const Stable = require('../models/stable');
+const Stable = require('../model/Stable');
 
 
 
