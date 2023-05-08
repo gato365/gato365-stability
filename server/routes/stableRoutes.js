@@ -7,6 +7,6 @@ const router = express.Router();
 router.post('/submit-data', stableController.create);
 
 // Get chart data for stable entries with optional filters
-router.get('/', stableController.getChartData);
+router.get('/chart-data', stableController.getChartData);
 
 module.exports = router;
