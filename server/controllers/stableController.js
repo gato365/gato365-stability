@@ -19,7 +19,7 @@ const stableController = {
             res.status(201).json({ success: true, data: newStable });
         } catch (error) {
             // If there was an error, send an error response
-            res.status(500).json({ success: false, error: error.message });
+            res.status(400).json({ success: false, error: error.message });
         }
     },
 
