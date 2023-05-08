@@ -97,18 +97,49 @@
 
         const submitFormButton = document.getElementById('submit-form-button');
 
-        submitFormButton.addEventListener('click', (event) => {
+        submitFormButton.addEventListener('click', async (event) => {
             event.preventDefault();
-
-            const weight = document.getElementById('weight').value;
+          
+            const weightElement = document.getElementById('weight');
+            const weight = weightElement ? weightElement.value : null;
             const mood = document.getElementById('mood').value;
             const goals = document.getElementById('goals').value;
             const foodQuality = document.getElementById('food_quality').value;
             const timePoint = getCurrentTimePoint();
             const currentTime = new Date();
-
-            // Do something with the form data, such as saving it to a database or displaying it on the page
-        });
+          
+            // Prepare the form data to send to the server
+            const formData = {
+              weight,
+              mood,
+              goals,
+              foodQuality,
+              timePoint,
+              currentTime,
+            };
+          
+            try {
+              // Send the form data to the server using a POST request
+              const response = await fetch('/submit-data', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+              });
+          
+              // Check if the request was successful and handle the response
+              if (response.ok) {
+                const result = await response.json();
+                console.log(result.message);
+              } else {
+                console.error('Error submitting data:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Error submitting data:', error);
+            }
+          });
+          
 
     </script>
 </body>

@@ -4,7 +4,7 @@ const stableController = require('../controllers/stableController');
 const router = express.Router();
 
 // Create a new stable entry
-router.post('/', stableController.create);
+router.post('/submit-data', stableController.create);
 
 // Get chart data for stable entries with optional filters
 router.get('/', stableController.getChartData);
