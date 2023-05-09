@@ -3,45 +3,94 @@ const currentTimeElement = document.getElementById('current-time');
 
 function getCurrentTimePoint() {
     const now = new Date();
-    const hour = now.getHours();
+    const hour = 4 //now.getHours();
     const minute = now.getMinutes();
+
+
 
     if (hour < 7 || (hour === 7 && minute < 45)) return "wakeUp"; if (hour < 10 || (hour === 10 && minute < 45))
         return "7_45am"; if (hour < 12) return "10_45am"; if (hour < 15) return "12pm"; if (hour < 18) return "3pm"; if
         (hour < 20 || (hour === 20 && minute < 30)) return "6pm"; return "8_30pm";
 } function renderFormFields(timePoint) {
-    let fields = ''; if (timePoint === "wakeUp") {
-        fields += ` <div>
-    <label for="weight">Weight:</label>
-    <input type="number" id="weight" name="weight">
-    </div>
+    let fields = '';
+
+    if (timePoint === "wakeUp") {
+        fields += `
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="weight">Weight:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="weight" name="weight">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="myYFourLife">My Why For Life:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="myYFourLife" name="myYFourLife">
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="myYFourKelley">My Why For Kelley:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="myYFourKelley" name="myYFourKelley">
+        </div>
+
+
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="myYFourGATO365">My Why For GATO365:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="myYFourGATO365" name="myYFourGATO365">
+        </div>
+        
+        
+        
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="numberOfDays">Number of Days:</label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="numberOfDays" name="numberOfDays">
+        </div>   
+        <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="blessings">Blessings:</label>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="blessings" name="blessings"></textarea>
+</div>
+        
+<hr class="border-t border-black-400 my-8">  
     `;
     }
 
     fields += `
-    <div>
-        <label for="mood">Mood:</label>
-        <select id="mood" name="mood">
-            <option value="M-">M-</option>
-            <option value="M">M</option>
-            <option value="M+">M+</option>
-        </select>
-    </div>
-    <div>
-        <label for="goals">Goals:</label>
-        <select id="goals" name="goals">
-            <option value="G-">G-</option>
-            <option value="G">G</option>
-            <option value="G+">G+</option>
-        </select>
-    </div>
-    <div>
-        <label for="food_quality">Food Quality:</label>
-        <select id="food_quality" name="food_quality">
-            <option value="L">L</option>
-            <option value="M">M</option>
-            <option value="H">H</option>
-        </select>
+    <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="mood">Mood:</label>
+    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="mood" name="mood">
+        <option value="M-">M-</option>
+        <option value="M">M</option>
+        <option value="M+">M+</option>
+    </select>
+</div>
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="goals">Goals:</label>
+    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="goals" name="goals">
+        <option value="G-">G-</option>
+        <option value="G">G</option>
+        <option value="G+">G+</option>
+    </select>
+</div>
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="food_quality">Food Quality:</label>
+    <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="food_quality" name="food_quality">
+        <option value="L">L</option>
+        <option value="M">M</option>
+        <option value="H">H</option>
+    </select>
+</div>
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="MJ">MJ:</label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="MJ" name="MJ">
+</div>
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="alcohol">Alcohol:</label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="alcohol" name="alcohol">
+</div>
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="eatingOut">Eating Out:</label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="number" id="eatingOut" name="eatingOut">
+</div>
+
+<div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="notes">Notes:</label>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="notes" name="notes"></textarea>
     </div>
     `;
 
