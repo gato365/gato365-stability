@@ -3,7 +3,7 @@ const currentTimeElement = document.getElementById('current-time');
 
 function getCurrentTimePoint() {
     const now = new Date();
-    const hour = 4 //now.getHours();
+    const hour = now.getHours();
     const minute = now.getMinutes();
 
 
@@ -120,20 +120,24 @@ const submitFormButton = document.getElementById('submit-form-button');
 submitFormButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    const weightElement = document.getElementById('weight');
-    const weight = weightElement ? weightElement.value : null;
-    const mood = document.getElementById('mood').value;
-    const goals = document.getElementById('goals').value;
-    const foodQuality = document.getElementById('food_quality').value;
     const timePoint = getCurrentTimePoint();
     const currentTime = new Date();
 
     // Prepare the form data to send to the server
     const formData = {
-        weightAM: weight,
-        mood: mood,
-        goals: goals,
-        foodQuality: foodQuality,
+        weightAM: document.getElementById('weight')?.value,
+        myYFourLife: document.getElementById('myYFourLife')?.value,
+        myYFourKelley: document.getElementById('myYFourKelley')?.value,
+        myYFourGATO365: document.getElementById('myYFourGATO365')?.value,
+        numberOfDays: document.getElementById('numberOfDays')?.value,
+        mood: document.getElementById('mood')?.value,
+        goals: document.getElementById('goals')?.value,
+        foodQuality: document.getElementById('food_quality')?.value,
+        MJ: document.getElementById('MJ')?.value,
+        alcohol: document.getElementById('alcohol')?.value,
+        eatingOut: document.getElementById('eatingOut')?.value,
+        blessings: document.getElementById('blessings')?.value,
+        notes: document.getElementById('notes')?.value,
         time: timePoint,
         // currentTime,
     };

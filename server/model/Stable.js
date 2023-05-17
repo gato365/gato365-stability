@@ -18,6 +18,7 @@ const stableSchema = new mongoose.Schema({
   myYFourGATO365: { type: String },
   blessings: { type: String },
   notes: { type: String },
+  pushups: { type: Number },
   time: { type: String, required: true }
 });
 
