@@ -3,9 +3,14 @@ const currentTimeElement = document.getElementById('current-time');
 
 function getCurrentTimePoint() {
     const now = new Date();
+    now.setHours(7, 45);
     const hour = now.getHours();
     const minute = now.getMinutes();
 
+
+  
+
+ 
 
 
     if (hour < 7 || (hour === 7 && minute < 45)) return "wakeUp"; if (hour < 10 || (hour === 10 && minute < 45))

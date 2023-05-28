@@ -10,15 +10,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(stableRoutes);
 
-// Serve up static assets from the "public" directory
+
+
+// Set the path to the public directory
 app.use(express.static(path.join(__dirname, '..', 'public')));
+// Set the path to the assets directory
+app.use('/assets', express.static(path.join(__dirname, '..', 'assets')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
 });
 
-// Serve up static assets from the "assets" directory within "public"
-app.use('/assets', express.static(path.join(__dirname, '..', 'public', 'assets')));
 
 // Default response for any other request (Not Found)
 app.use((err, req, res, next) => {
