@@ -22,9 +22,11 @@ df['Mood'] = df['Mood'].str.split(';')
 mood_dict = {'M-': -1, 'M': 0, 'M+': 1, 'M-e': -1, 'M+e': 1, 'M-l': -1, 'M+l': 1, 'Ml': 0, 'M': 0,'Me': 0}
 df['Average_Mood'] = df['Mood'].apply(lambda x: sum(mood_dict[i.strip()] for i in x if i.strip() in mood_dict) / len(x))
 
-# Calculate the 30-day rolling mean of 'Average_Mood' and 'Weight'
-df['Average_Mood_30D'] = df['Average_Mood'].rolling(30).mean()
-df['Weight_30D'] = df['Weight'].rolling(30).mean()
+# Calculate the num_days-day rolling mean of 'Average_Mood' and 'Weight'
+
+num_days = 15
+df['Average_Mood_30D'] = df['Average_Mood'].rolling(num_days).mean()
+df['Weight_30D'] = df['Weight'].rolling(num_days).mean()
 
 # Assign season based on month
 def assign_season(month):
@@ -40,7 +42,7 @@ def assign_season(month):
 df['Season'] = df['Date'].dt.month.apply(assign_season)
 
 
-print(df.head())
+
 
 
 
