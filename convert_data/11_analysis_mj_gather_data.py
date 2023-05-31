@@ -1,5 +1,7 @@
 # Import the necessary library
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Load your DataFrame
 df = pd.read_excel('emans_data.xlsx')
@@ -16,5 +18,17 @@ df.rename(columns={'MJ': 'MJ_original'}, inplace=True)
 # Select only MJ, MJ_new, Love columns
 df = df[['Date', 'MJ_original', 'MJ_new', 'Love']]
 
-# Now, df contains the newly created columns 'MJ_new' and 'Love' based on the conditions you described
-df.to_csv('temp.csv', index=False)
+# Calculate the number of 1's in 'MJ_new' and 'Love' columns
+count_mj = df['MJ_new'].sum()
+count_love = df['Love'].sum()
+
+# Prepare data for plotting
+data = {'MJ_new': count_mj, 'Love': count_love}
+
+# Create bar plot
+plt.figure(figsize=(10,6))
+plt.bar(data.keys(), data.values())
+plt.xlabel('Variable')
+plt.ylabel('Count')
+plt.title('Count of 1\'s in MJ_new and Love')
+plt.show()
