@@ -33,8 +33,33 @@ for mood_list in df['Mood']:
     for i in range(len(mood_list) - 1):
         mood_transitions.append((mood_list[i], mood_list[i+1]))
 
+# # Create a DataFrame of transition counts
+# transition_counts = pd.DataFrame(index=['M-', 'M', 'M+', 'M-l', 'M', 'M+l'], columns=['M-', 'M', 'M+', 'M-l', 'M', 'M+l'])
+# transition_counts = transition_counts.fillna(0)
+
+# for transition in mood_transitions:
+#     if transition[0] in transition_counts.index and transition[1] in transition_counts.columns:
+#         transition_counts.loc[transition[0], transition[1]] += 1
+
+# # Convert counts to probabilities
+# transition_probabilities = transition_counts.divide(transition_counts.sum(axis=1), axis=0)
+
+# print(transition_probabilities)
+
+# # Create the heatmap
+# plt.figure(figsize=(10,8))
+# sns.heatmap(transition_probabilities, annot=True, cmap='coolwarm')
+
+# plt.title('Mood Transition Probabilities')
+# plt.ylabel('Current Mood')
+# plt.xlabel('Next Mood')
+
+# plt.show()
+
+
 # Create a DataFrame of transition counts
-transition_counts = pd.DataFrame(index=['M-', 'M', 'M+', 'M-l', 'M', 'M+l'], columns=['M-', 'M', 'M+', 'M-l', 'M', 'M+l'])
+mood_order = ['M-l', 'M-', 'Ml', 'M', 'M+l', 'M+']
+transition_counts = pd.DataFrame(index=mood_order, columns=mood_order)
 transition_counts = transition_counts.fillna(0)
 
 for transition in mood_transitions:
@@ -44,13 +69,19 @@ for transition in mood_transitions:
 # Convert counts to probabilities
 transition_probabilities = transition_counts.divide(transition_counts.sum(axis=1), axis=0)
 
-print(transition_probabilities)
-
 # Create the heatmap
-plt.figure(figsize=(10,8))
-sns.heatmap(transition_probabilities, annot=True, cmap='coolwarm')
+plt.figure(figsize=(10, 8))
+sns.heatmap(transition_probabilities, annot=True, cmap='coolwarm', fmt='.2f', annot_kws={'size': 10}, xticklabels=mood_order, yticklabels=mood_order)
 
-plt.title('Mood Transition Probabilities')
+# Add sample size to each square
+for i in range(len(mood_order)):
+    for j in range(len(mood_order)):
+        count = transition_counts.loc[mood_order[i], mood_order[j]]
+        prob = transition_probabilities.loc[mood_order[i], mood_order[j]]
+        text = f'\n\n({count})'
+        plt.text(j + 0.5, i + 0.5, text, ha='center', va='center', color='black', fontsize=10)
+
+plt.title('Mood Transition Probabilities with Sample Size')
 plt.ylabel('Current Mood')
 plt.xlabel('Next Mood')
 
