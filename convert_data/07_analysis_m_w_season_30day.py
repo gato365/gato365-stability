@@ -11,6 +11,10 @@ df = df[df['Mood'].str.count(';') == 6]
 # Only keep the 'Date', 'Mood' and 'Weight_AM' columns
 df = df[['Date', 'Mood','Weight_AM']]
 
+# Filter on a year from today
+df = df[df['Date'] > '2022-05-31']
+
+
 # Rename Weight_AM to Weight
 df.rename(columns={'Weight_AM': 'Weight'}, inplace=True)
 
