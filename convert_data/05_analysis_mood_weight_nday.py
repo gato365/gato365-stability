@@ -9,7 +9,7 @@ df = pd.read_excel('emans_data.xlsx')
 # Filter out rows with wrong number of semicolons
 df = df[df['Mood'].str.count(';') == 6]
 
-# Only keep the 'Date' and 'Mood' columns
+# Only keep the 'Date' and re'Mood' columns
 df = df[['Date', 'Mood','Weight_AM']]
 
 # Rename Weight_AM to Weight
