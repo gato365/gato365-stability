@@ -12,10 +12,10 @@ df = df[(df['Goals'].str.count(';') == 6) & (df['Mood'].str.count(';') == 6)]
 
 
 # Only keep the 'Date' and re'Mood' columns
-df = df[['Date', 'Mood','Weight_AM','Food_Quality','MJ','alcohol','eating_out','Goals']]
+df = df[['Date', 'Mood','Weight_AM','Food_Quality','MJ','alcohol','eating_out','Goals','take_ante_dee']]
 
 # Rename Weight_AM to Weight
-df.rename(columns={'Weight_AM': 'Weight','alcohol': 'Alcohol','eating_out': 'Eating_Out'}, inplace=True)
+df.rename(columns={'Weight_AM': 'Weight','alcohol': 'Alcohol','eating_out': 'Eating_Out','take_ante_dee':'Take_Medication'}, inplace=True)
 
 
 # # Convert 'Date' to a datetime object
@@ -53,7 +53,7 @@ df['Weight_Change'] = df['Weight'].diff().apply(lambda x: 1 if x < 0 else 0)
 # Now df_grouped will have the average Food Quality for each day
 
 ## Extract Weight, Date, Average Mood, Average Goal, Average Food Quality, MJ, Love, Alcohol, Eating_Out
-df_grouped = df[['Date', 'Weight','Average_Mood','Average_Goal','Average_FQ','MJ','Love','Alcohol','Eating_Out','Weight_Change']].groupby('Date').mean().reset_index()
+df_grouped = df[['Date', 'Weight','Average_Mood','Average_Goal','Average_FQ','MJ','Love','Alcohol','Eating_Out','Weight_Change','Take_Medication']].groupby('Date').mean().reset_index()
 
 
 
@@ -88,7 +88,7 @@ df['Daily_Metric'] += weights['Weight_Change'] * df['Weight_Change']  # 1 is goo
 # You can also apply a rolling average if you'd like to smooth out the daily metrics.
 df['Daily_Metric_Rolling_Avg'] = df['Daily_Metric'].rolling(window=7).mean()
 
-print(df)
+df.to_csv('emans_data_processed.csv', index=False)
 
 
 
@@ -100,6 +100,28 @@ plt.xlabel('Date')
 plt.ylabel('Daily Metric')
 plt.grid(True)
 plt.show()
+
+
+
+# Create a plot
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+color = 'tab:blue'
+ax1.set_xlabel('Date')
+ax1.set_ylabel('Daily Metric')
+ax1.grid(True)
+
+# Scatter plot for Daily_Metric colored based on Take_Medication
+scatter = ax1.scatter(df['Date'], df['Daily_Metric'], c=df['Take_Medication'], cmap='coolwarm', marker='o', label='Daily Metric')
+
+# Add a colorbar to explain the color coding
+cbar = plt.colorbar(scatter, ticks=[0,1])
+cbar.set_label('Take_Medication')
+
+plt.title('Daily Metric Over Time with Medication Info')
+plt.show()
+
+
 
 
 
