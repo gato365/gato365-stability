@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the data into a DataFrame
-df = pd.read_excel('emans_data_lite.xlsx')
+df = pd.read_excel('emans_data.xlsx')
 
 # Only keep the 'Date' and 'Mood' columns
 df = df[['Date', 'Mood']]
